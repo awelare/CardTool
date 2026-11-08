@@ -9,9 +9,13 @@
 #include "apps/progcalc.h"
 #include "apps/musicplayer.h"
 #include "apps/videoplayer.h"
+#include "apps/snake.h"
+#include "apps/game2048.h"
+#include "apps/sudoku.h"
+#include "apps/minesweeper.h"
 
 // Группы (порядок = порядок в лаунчере). Пустые группы не показываются.
-const char* const kGroups[] = {"Учёба", "Игры", "Инструменты", "Хакинг", "Система"};
+const char* const kGroups[] = {"Учёба", "Игры", "Инструменты", "Медиа", "Хакинг", "Система"};
 const int kGroupsCount = sizeof(kGroups) / sizeof(kGroups[0]);
 
 // Приложения: {"Название", "Группа", функция_создания},
@@ -26,5 +30,9 @@ const AppEntry kApps[] = {
   {"Математика в разных СС", "Учёба", createProgCalc},
   {"Музыка", "Медиа", createMusic},
   {"Видео",  "Медиа", createVideo},
+  {"Змейка", "Игры", createSnake},
+  {"2048", "Игры", create2048},
+  {"Судоку", "Игры", createSudoku},
+  {"Сапёр", "Игры", createMinesweeper},
 };
 const int kAppsCount = sizeof(kApps) / sizeof(kApps[0]);
