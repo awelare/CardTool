@@ -48,5 +48,7 @@ void loop() {
   }
 
   if (a->takeDirty()) a->draw();
+
+  ui::updateBattery();
   delay(2);
 }
