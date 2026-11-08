@@ -19,10 +19,28 @@ void setup() {
 
   themeLoad();
   gfx.init();
+  pinMode(PIN_TFT_CS, OUTPUT);
+  digitalWrite(PIN_TFT_CS, HIGH);
   themeApplyToDisplay();
   gfx.fillScreen(C_BG);
 
   storageBegin();
+  Serial.begin(115200);
+  Serial.printf("SD g_sdOk=%d\n", g_sdOk);
+  if (g_sdOk) {
+    File root = SD.open("/");
+    if (root && root.isDirectory()) {
+      Serial.println("Root contents:");
+      File e;
+      while ((e = root.openNextFile())) {
+        Serial.printf("  %s%s\n", e.name(), e.isDirectory() ? "/" : "");
+        e.close();
+      }
+      root.close();
+    } else {
+      Serial.println("Root open failed");
+    }
+  }
   launcher.start();
 }
 

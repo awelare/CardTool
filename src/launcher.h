@@ -34,7 +34,7 @@ public:
     if (_sel < _first) _first = _sel;
     if (_sel >= _first + vis) _first = _sel - vis + 1;
     gfx.startWrite();
-    ui::titleBar(_level == 0 ? "Cardputer OS" : kGroups[_group]);
+    ui::titleBar(_level == 0 ? "CardTool" : kGroups[_group]);
     char v[8];
     for (int i = 0; i < vis; i++) {
       int idx = _first + i;

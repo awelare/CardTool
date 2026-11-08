@@ -59,7 +59,7 @@ public:
       c.dma_channel = SPI_DMA_CH_AUTO;
       c.pin_sclk = PIN_TFT_SCK;
       c.pin_mosi = PIN_TFT_MOSI;
-      c.pin_miso = -1;
+      c.pin_miso = PIN_SD_MISO;   // 39 — SD-карта отдаёт данные по этой линии
       c.pin_dc = PIN_TFT_DC;
       _bus.config(c);
       _panel.setBus(&_bus);

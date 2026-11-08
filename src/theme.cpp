@@ -1,4 +1,5 @@
 #include <Preferences.h>
+#include <M5Cardputer.h>
 #include "theme.h"
 #include "display.h"
 
@@ -36,6 +37,11 @@ void themeApply() {
 
 void themeReset() {
   g_cfg.theme = 0; g_cfg.accent = 0; g_cfg.rotation = 7; g_cfg.invert = 0;
+  g_cfg.brightness = 80;
+  g_cfg.volume     = 70;
+  g_cfg.language   = 0;
+  g_cfg.keyRepeat  = 2;
+  g_cfg.autoOffSec = 0;
   themeApply();
 }
 
@@ -47,11 +53,21 @@ void themeLoad() {
   g_cfg.accent   = p.getUChar("accent", g_cfg.accent);
   g_cfg.rotation = p.getUChar("rot", g_cfg.rotation);
   g_cfg.invert   = p.getUChar("inv", g_cfg.invert);
+  g_cfg.brightness = p.getUChar ("bright",  80);
+  g_cfg.volume     = p.getUChar ("volume",  70);
+  g_cfg.language   = p.getUChar ("lang",     0);
+  g_cfg.keyRepeat  = p.getUChar ("krepeat",  2);
+  g_cfg.autoOffSec = p.getUShort("autooff",  0);
   p.end();
   if (g_cfg.theme >= kThemeCount) g_cfg.theme = 0;
   if (g_cfg.accent >= kAccentCount) g_cfg.accent = 0;
   if (!(g_cfg.rotation == 1 || g_cfg.rotation == 3 || g_cfg.rotation == 5 || g_cfg.rotation == 7)) g_cfg.rotation = 7;
   g_cfg.invert = g_cfg.invert ? 1 : 0;
+  if (g_cfg.brightness < 10) g_cfg.brightness = 10;
+  if (g_cfg.brightness > 100) g_cfg.brightness = 100;
+  if (g_cfg.volume > 100) g_cfg.volume = 100;
+  if (g_cfg.language > 1) g_cfg.language = 0;
+  if (g_cfg.keyRepeat > 3) g_cfg.keyRepeat = 2;
   themeApply();
 }
 
@@ -62,10 +78,16 @@ void themeSave() {
   p.putUChar("accent", g_cfg.accent);
   p.putUChar("rot", g_cfg.rotation);
   p.putUChar("inv", g_cfg.invert);
+  p.putUChar ("bright",   g_cfg.brightness);
+  p.putUChar ("volume",   g_cfg.volume);
+  p.putUChar ("lang",     g_cfg.language);
+  p.putUChar ("krepeat",  g_cfg.keyRepeat);
+  p.putUShort("autooff",  g_cfg.autoOffSec);
   p.end();
 }
 
 void themeApplyToDisplay() {
   gfx.setRotation(g_cfg.rotation);
   gfx.invertDisplay(g_cfg.invert != 0);
+  M5.Speaker.setVolume(g_cfg.volume * 255 / 100);
 }

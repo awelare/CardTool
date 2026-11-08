@@ -23,11 +23,16 @@
 
 // Настройки интерфейса (меняются в приложении "Настройки", хранятся в NVS)
 struct UiConfig {
-  uint8_t theme;      // номер темы
-  uint8_t accent;     // номер акцентного цвета
-  uint8_t rotation;   // 1, 3, 5 или 7
-  uint8_t invert;     // инверсия цветов экрана
-  uint16_t bg, fg, dim, accent_c, sel;  // текущие цвета (считаются из темы)
+  uint8_t theme = 0;
+  uint8_t accent = 0;
+  uint8_t rotation = 7;
+  uint8_t invert = 0;
+  uint8_t  brightness = 80;
+  uint8_t  volume     = 70;
+  uint8_t  language   = 0;
+  uint8_t  keyRepeat  = 2;
+  uint16_t autoOffSec = 0;
+  uint16_t bg, fg, dim, sel, accent_c;
 };
 extern UiConfig g_cfg;
 
