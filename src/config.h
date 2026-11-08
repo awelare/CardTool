@@ -12,6 +12,9 @@
 #define PIN_SD_MOSI  14
 #define PIN_SD_CS    12
 
+// ---- ИК-передатчик (встроенный) ----
+#define PIN_IR_TX    44
+
 #define TFT_FREQ     27000000  // если картинка рябит: 20000000
 #define SCREEN_W 320
 #define SCREEN_H 240
