@@ -13,6 +13,7 @@
 #include "apps/game2048.h"
 #include "apps/sudoku.h"
 #include "apps/minesweeper.h"
+#include "apps/filemanager.h"
 
 // Группы (порядок = порядок в лаунчере). Пустые группы не показываются.
 const char* const kGroups[] = {"Учёба", "Игры", "Инструменты", "Медиа", "Хакинг", "Система"};
@@ -34,5 +35,6 @@ const AppEntry kApps[] = {
   {"2048", "Игры", create2048},
   {"Судоку", "Игры", createSudoku},
   {"Сапёр", "Игры", createMinesweeper},
+  {"Файлы", "Система", createFileManager},
 };
 const int kAppsCount = sizeof(kApps) / sizeof(kApps[0]);
