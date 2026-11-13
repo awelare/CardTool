@@ -16,6 +16,7 @@
 #include "apps/filemanager.h"
 #include "apps/refbook.h"
 #include "apps/periodic.h"
+#include "apps/aichat.h"
 
 // Группы (порядок = порядок в лаунчере). Пустые группы не показываются.
 const char* const kGroups[] = {"Учёба", "Игры", "Инструменты", "Медиа", "Хакинг", "Система"};
@@ -41,5 +42,6 @@ const AppEntry kApps[] = {
 {"Формулы", "Учёба", createFormulas},
 {"Определения", "Учёба", createDefinitions},
 {"Таблица Менделеева", "Учёба", createPeriodic},
+{"Спросить ИИ", "Инструменты", createAiChat},
 };
 const int kAppsCount = sizeof(kApps) / sizeof(kApps[0]);
